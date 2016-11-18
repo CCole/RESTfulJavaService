@@ -1,4 +1,6 @@
 package com.cory.staff.controller;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;  
 
 import javax.ws.rs.DELETE;  
@@ -9,21 +11,25 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;  
 import javax.ws.rs.Produces;  
 import javax.ws.rs.core.MediaType;  
-  
+
+import com.cory.staff.service.DbConnection;
 import com.cory.staff.bean.Staff;  
 import com.cory.staff.service.StaffService;  
 
 @Path("/staff")
 public class StaffController {
 	
+	DbConnection Db = new DbConnection(); 
 	StaffService staffService = new StaffService(); 
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Staff> getStaff() {
-		List<Staff>listOfStaff = staffService.getAllStaff();
+	public ArrayList<HashMap<String, Object>>  getStaff() {
+		//List<Staff>listOfStaff = staffService.getAllStaff();
 		//System.out.print(listOfStaff)
-		return listOfStaff;
+		//return listOfStaff;
+		return Db.connect();
+		
 	}
 	
 	@GET
