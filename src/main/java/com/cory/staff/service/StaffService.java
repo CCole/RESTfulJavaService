@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;  
 import java.util.List;  
   
-import com.cory.staff.bean.Staff;  
+import com.cory.staff.bean.Staff; 
+import com.cory.staff.service.DbConnection; 
 
 public class StaffService {
 	static HashMap<Integer,Staff> staffIdMap=getStaffIdMap();  
 	  
-	  
+	DbConnection Db = new DbConnection(); 
+	
 	 public StaffService() {  
 	  super();  
+	  
+	  
 	  
 	  if(staffIdMap==null)  
 	  {  
@@ -27,6 +31,7 @@ public class StaffService {
 	   staffIdMap.put(4,JeanMichel);  
 	   staffIdMap.put(3,MCEscher);  
 	   staffIdMap.put(2,AndyWarhol);  
+	   Db.connect(); 
 	  }  
 	 }  
 	  
