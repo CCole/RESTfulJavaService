@@ -10,7 +10,7 @@ import com.cory.staff.bean.Staff;
 
 public class DbConnection {
 	
-	HashMap<String, Object> row = new HashMap<String, Object>(); 
+	
 	ArrayList<HashMap<String, Object>> table = new ArrayList<HashMap<String, Object>>();
 	
 	Connection conn = null ;
@@ -39,12 +39,15 @@ public class DbConnection {
 			int cCount = rsmd.getColumnCount();
 			
 			while (rs.next()){
+				HashMap<String, Object> row = new HashMap<String, Object>(); 
 				//For each column get the value of the column in the current row
 				for(int i = 1; i <= cCount; i++){
 					
+					//System.out.println(rs.getString(i));
 					row.put(rsmd.getColumnName(i), rs.getObject(i));
-					table.add(row); //give me an arraylist of Hashmaps that represent records in my staff table
+					
 				}
+				table.add(row); //give me an arraylist of Hashmaps that represent records in my staff table
 				/*long NPI_Number = rs.getLong("NPI_Number");
 				String Staff_Type = rs.getString("Staff_Type"); 
 				String First_Name = rs.getString("First_Name");
@@ -53,7 +56,7 @@ public class DbConnection {
 				Date DOB = rs.getDate("DOB");
 				int SQUIRE_Staff_ID = rs.getInt("SQUIRE_Staff_ID");*/
 				
-				//System.out.println(rs.getString("Staff_Type"));
+				
 			}
 			
 			
