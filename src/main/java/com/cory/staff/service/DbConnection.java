@@ -20,16 +20,28 @@ public class DbConnection {
 	
 	String connURL = "jdbc:sqlserver://localhost:51041;databaseName=SQUIRE_NP;integratedSecurity=true;"; 
 	
-	
-	
-	public ArrayList<HashMap<String, Object>> connect(){
-		
-		try {
+	public ResultSet connect(){
+		try{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			conn = DriverManager.getConnection(connURL);
 			String sampleSQL = "SELECT TOP 10 * FROM dbo.Staff";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sampleSQL);
+		}
+		
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return rs ;
+	}
+	
+	
+	
+	public ArrayList<HashMap<String, Object>> createRecordList(){
+		
+		try {
+			rs = connect();
 			
 			//ResultSetMetaData rsmd = rs.getMetaData(); 
 			
@@ -47,15 +59,8 @@ public class DbConnection {
 					row.put(rsmd.getColumnName(i), rs.getObject(i));
 					
 				}
-				table.add(row); //give me an arraylist of Hashmaps that represent records in my staff table
-				/*long NPI_Number = rs.getLong("NPI_Number");
-				String Staff_Type = rs.getString("Staff_Type"); 
-				String First_Name = rs.getString("First_Name");
-				String Middle_Name = rs.getString("Middle_Name");
-				String Last_Name = rs.getString("Last_Name");
-				Date DOB = rs.getDate("DOB");
-				int SQUIRE_Staff_ID = rs.getInt("SQUIRE_Staff_ID");*/
 				
+				table.add(row); //give me an arraylist of Hashmaps that represent records in my staff table
 				
 			}
 			
