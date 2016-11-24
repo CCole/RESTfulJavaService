@@ -20,26 +20,18 @@ public class DbConnection {
 	
 	String connURL = "jdbc:sqlserver://localhost:51041;databaseName=SQUIRE_NP;integratedSecurity=true;"; 
 	
-	public ResultSet connect(){
+	public Connection connect(){
 		try{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			conn = DriverManager.getConnection(connURL);
-			String sampleSQL = "SELECT TOP 10 * FROM dbo.Staff";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sampleSQL);
+			
 		}
 		
 		catch (Exception e){
 			e.printStackTrace();
 		}
 		
-		return rs ;
-	}
-	
-	public ResultSet deleteRecord(){
-		rs = connect();
-		
-		return rs;
+		return conn ;
 	}
 	
 	
@@ -47,7 +39,10 @@ public class DbConnection {
 	public ArrayList<HashMap<String, Object>> createRecordList(){
 		
 		try {
-			rs = connect();
+			conn = connect();
+			String sampleSQL = "SELECT TOP 10 * FROM dbo.Staff";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sampleSQL);
 			
 			//ResultSetMetaData rsmd = rs.getMetaData(); 
 			
