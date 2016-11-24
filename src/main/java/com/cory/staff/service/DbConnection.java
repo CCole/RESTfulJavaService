@@ -36,7 +36,7 @@ public class DbConnection {
 	
 	
 	
-	public ArrayList<HashMap<String, Object>> createRecordList(){
+	public ArrayList<HashMap<String, Object>> getRecordList(){
 		
 		try {
 			conn = connect();

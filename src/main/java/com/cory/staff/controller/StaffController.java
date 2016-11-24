@@ -28,7 +28,7 @@ public class StaffController {
 		//List<Staff>listOfStaff = staffService.getAllStaff();
 		//System.out.print(listOfStaff)
 		//return listOfStaff;
-		return Db.createRecordList();
+		return Db.getRecordList();
 		
 	}
 
