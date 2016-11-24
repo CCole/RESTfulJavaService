@@ -36,6 +36,12 @@ public class DbConnection {
 		return rs ;
 	}
 	
+	public ResultSet deleteRecord(){
+		rs = connect();
+		
+		return rs;
+	}
+	
 	
 	
 	public ArrayList<HashMap<String, Object>> createRecordList(){
