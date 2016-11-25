@@ -17,7 +17,7 @@ public class Staff {
 	
 	int id; 
 	String staffType;
-	long npiNumber;
+	String npiNumber;
 	String firstName;
 	String lastName;
 	String middleName;
@@ -27,7 +27,7 @@ public class Staff {
 		super();
 	}
 	
-	public Staff(int i, String staffType, long npiNumber, String firstName, String lastName, String middleName) {
+	public Staff(int i, String staffType, String npiNumber, String firstName, String lastName, String middleName) {
 		super();
 		this.id = i;
 		this.staffType = staffType;
@@ -53,11 +53,11 @@ public class Staff {
 		this.staffType = staffType;
 	}
 	
-	public long getNpiNumber() {
+	public String getNpiNumber() {
 		return npiNumber;
 	}
 	
-	public void setNpiNumber(long npiNumber) {
+	public void setNpiNumber(String npiNumber) {
 		this.npiNumber = npiNumber;
 	}
 	

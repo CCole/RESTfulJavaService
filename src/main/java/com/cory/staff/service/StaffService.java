@@ -21,7 +21,7 @@ public class StaffService {
 	  {  
 	   staffIdMap=new HashMap<Integer,Staff>();  
 	  // Creating and initializing some Staff objects 
-	   Staff HebruBrantley=new Staff(1, "Artist",100008785,"Hebru","Brantley","M");  
+	  /* Staff HebruBrantley=new Staff(1, "Artist",100008785,"Hebru","Brantley","M");  
 	   Staff JeanMichel=new Staff(4, "Artist",2000065246,"Jean","Basquiat","Michel");  
 	   Staff MCEscher=new Staff(3, "Artist",1000567821,"M","Escher","C");  
 	   Staff AndyWarhol=new Staff(2, "Artist",2000123401,"Andy","Warhol","M");  
@@ -30,8 +30,8 @@ public class StaffService {
 	   staffIdMap.put(1,HebruBrantley);  
 	   staffIdMap.put(4,JeanMichel);  
 	   staffIdMap.put(3,MCEscher);  
-	   staffIdMap.put(2,AndyWarhol);  
-	   Db.connect(); 
+	   staffIdMap.put(2,AndyWarhol);  */
+	   //Db.connect(); 
 	  }  
 	 }  
 	  

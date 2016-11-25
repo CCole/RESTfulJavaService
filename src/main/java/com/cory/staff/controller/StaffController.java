@@ -13,8 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;  
 
 import com.cory.staff.service.DbConnection;
-//import com.cory.staff.bean.Staff;  
-import com.cory.staff.service.StaffService;  
+import com.cory.staff.bean.Staff;  
+//import com.cory.staff.service.StaffService;  
 
 @Path("/staff")
 public class StaffController {
@@ -37,6 +37,14 @@ public class StaffController {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayHelloPlainText(){
 		return "Hello RESTful World";
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void addStaff(Staff staff){
+		System.out.println(staff.getStaffType());
+		int rows = Db.addRecord(staff);
+		System.out.println(rows + "affected");
 	}
 /*
 	@GET

@@ -34,6 +34,36 @@ public class DbConnection {
 		return conn ;
 	}
 	
+	public int addRecord(Staff staff){
+		int rows = 0; 
+		
+		try {
+			conn = connect();
+			String sql = "INSERT INTO dbo.Staff"
+					+ "(dbo.Staff.Staff_Type, dbo.Staff.NPI_Number, dbo.Staff.First_Name, dbo.Staff.Last_Name, dbo.Staff.Middle_Name) VALUES"
+					+"(?,?,?,?,?)"; 
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, staff.getStaffType());
+			psmt.setString(2, staff.getNpiNumber());
+			psmt.setString(3, staff.getFirstName());
+			psmt.setString(4, staff.getLastName());
+			psmt.setString(5, staff.getMiddleName());
+			
+			rows = psmt.executeUpdate();
+		}
+		
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		finally{
+			if (rs != null) try {rs.close();} catch(Exception e){}
+			if (stmt != null) try {stmt.close();} catch(Exception e){}
+			if (conn != null) try {conn.close();} catch(Exception e){}
+		}
+		
+		return rows;
+	}
 	
 	
 	public ArrayList<HashMap<String, Object>> getRecordList(){
