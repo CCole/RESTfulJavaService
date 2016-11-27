@@ -31,13 +31,16 @@ public class StaffController {
 		return Db.getRecordList();
 		
 	}
-
+	
 	@GET
-	@Path("/{tst}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String sayHelloPlainText(){
-		return "Hello RESTful World";
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Staff getStaffById(@PathParam("id") int id){
+		
+		return Db.getRecordById(id);
 	}
+ 
+	
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -46,7 +49,24 @@ public class StaffController {
 		int rows = Db.addRecord(staff);
 		System.out.println(rows + "affected");
 	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public void updateStaff(Staff staff){
+		System.out.println(staff.getId());
+		int rows = Db.updateRecord(staff);
+		System.out.println(rows + "affected");
+	}
+	
+	
 /*
+ @GET
+	@Path("/{tst}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String sayHelloPlainText(){
+		return "Hello RESTful World";
+	}
+ 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

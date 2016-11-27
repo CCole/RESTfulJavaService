@@ -10,9 +10,10 @@ import com.cory.staff.bean.Staff;
 
 public class DbConnection {
 	
-	
+	//chore: choose one
 	ArrayList<HashMap<String, Object>> table = new ArrayList<HashMap<String, Object>>();
-	
+	ArrayList<Staff> sTable = new ArrayList<Staff>();
+	//chore: choose one
 	Connection conn = null ;
 	Statement stmt = null; 
 	ResultSet rs = null ;
@@ -32,6 +33,69 @@ public class DbConnection {
 		}
 		
 		return conn ;
+	}
+	
+	public Staff getRecordById(int id){
+		Staff row = new Staff(); 
+		
+		try{
+			conn = connect();
+			String sql = "SELECT * FROM dbo.Staff WHERE dbo.Staff.SQUIRE_STAFF_ID=(?)";
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, id);
+			rs = psmt.executeQuery();
+			
+			rsmd = rs.getMetaData(); 
+			//int cCount = rsmd.getColumnCount();
+			
+			while (rs.next()){
+				
+				row.setId(rs.getInt("SQUIRE_STAFF_ID"));
+				row.setStaffType(rs.getString("Staff_Type"));
+				row.setNpiNumber(rs.getString("NPI_Number"));
+				row.setFirstName(rs.getString("First_Name"));
+				row.setMiddleName(rs.getString("Middle_Name"));
+				row.setLastName(rs.getString("Last_Name"));
+				
+				
+			}
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		finally{
+			if (rs != null) try {rs.close();} catch(Exception e){}
+			if (stmt != null) try {stmt.close();} catch(Exception e){}
+			if (conn != null) try {conn.close();} catch(Exception e){}
+		}
+		
+		return row;
+	}
+	
+	public int updateRecord(Staff staff){
+		int rows = 0;
+		
+		try{
+			conn = connect();
+			String sql = "UPDATE dbo.Staff" +
+					"SET dbo.Staff.Staff_Type=(?), dbo.Staff.NPI_Number=(?), dbo.Staff.First_Name=(?), "
+					+ "dbo.Staff.Last_Name=(?), dbo.Staff.Middle_Name=(?)" + "WHERE dbo.Staff.SQUIRE_STAFF_ID=(?)";
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setInt(6, staff.getId());
+		}
+		
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		finally{
+			if (rs != null) try {rs.close();} catch(Exception e){}
+			if (stmt != null) try {stmt.close();} catch(Exception e){}
+			if (conn != null) try {conn.close();} catch(Exception e){}
+		}
+		return rows ; 
 	}
 	
 	public int addRecord(Staff staff){
