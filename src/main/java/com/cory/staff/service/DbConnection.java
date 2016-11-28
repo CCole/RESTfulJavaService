@@ -84,6 +84,12 @@ public class DbConnection {
 					+ "dbo.Staff.Last_Name=(?), dbo.Staff.Middle_Name=(?)" + "WHERE dbo.Staff.SQUIRE_STAFF_ID=(?)";
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setInt(6, staff.getId());
+			psmt.setString(1, staff.getStaffType());
+			psmt.setString(2, staff.getNpiNumber());
+			psmt.setString(3, staff.getFirstName());
+			psmt.setString(4, staff.getLastName());
+			psmt.setString(5, staff.getMiddleName());
+			rows = psmt.executeUpdate();
 		}
 		
 		catch (Exception e){
